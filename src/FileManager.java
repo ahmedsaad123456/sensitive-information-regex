@@ -82,7 +82,7 @@ public class FileManager {
             sentence = maskSwiftCode(sentence);
             sentence = maskPhoneNumber(sentence);
             sentence = maskAddress(sentence);
-            maskedText.append(sentence).append("\n");
+            maskedText.append(sentence);
         }
         return maskedText.toString();
     }
