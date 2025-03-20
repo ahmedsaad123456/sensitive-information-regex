@@ -51,7 +51,6 @@ public class EmailRegex {
 
         return pattern.matcher(sentence).replaceAll(match -> "*".repeat(match.group().length()));
     }
-
     // ===============================================================================================
 
 }

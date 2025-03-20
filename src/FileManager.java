@@ -1,5 +1,7 @@
 import java.io.*;
 import java.text.BreakIterator;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Locale;
 
 import static sensitive_information_regex.AddressRegex.maskAddress;
@@ -10,15 +12,58 @@ import static sensitive_information_regex.EmailRegex.maskEmail;
 
 public class FileManager {
 
+    /**
+     *
+     * method that take the filepath and return list of lines that exist in the file
+     *
+     * @param filePath of the input file
+     * @return list of lines
+     */
 
-    // ===============================================================================================
+    public static List<String> readFileLines(String filePath) {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line.trim());
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            return null;
+        }
+        return lines;
+    }
 
+    // ==================================================================================================
 
     /**
-     * read the file
      *
-     * @param filePath of the file that will be read
-     * @return the string that in the file
+     * method that take list of lines and file and put the lines in the file
+     *
+     * @param filePath of the output file
+     * @param lines that will be written in the file
+     */
+
+    public static void writeFileLines(String filePath, List<String> lines) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            for (String line : lines) {
+                writer.write(line);
+                writer.newLine();
+            }
+            System.out.println("File written successfully: " + filePath);
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + e.getMessage());
+        }
+    }
+
+    // ==================================================================================================
+
+    /**
+     *
+     * method that take the file path and return the text that exist in the file
+     *
+     * @param filePath of the input file
+     * @return text that in the file
      */
     public static String readFile(String filePath) {
         StringBuilder content = new StringBuilder();
@@ -34,15 +79,14 @@ public class FileManager {
         return content.toString();
     }
 
-
-    // ===============================================================================================
+    // ==================================================================================================
 
     /**
      *
-     * write the content in file
+     * method that take text and write it in the file of the file path
      *
-     * @param filePath of the new file
-     * @param content that will be written in the file
+     * @param filePath of the output file
+     * @param content the text that will be written in the file
      */
 
     public static void writeFile(String filePath, String content) {
@@ -54,40 +98,8 @@ public class FileManager {
         }
     }
 
-
-    // ===============================================================================================
-
-
-    /**
-     * Processes text by splitting it into sentences
-     *
-     * @param text The input text
-     */
-    public static String processText(String text) {
-        // this to get sentence by sentence from the text
-        BreakIterator iterator = BreakIterator.getSentenceInstance(Locale.US);
-        iterator.setText(text);
-
-        // the new text after applying the masked
-        StringBuilder maskedText = new StringBuilder();
-
-        // loop on the text and apply different mask in each sentence
-        int start = iterator.first();
-        for (int end = iterator.next(); end != BreakIterator.DONE; start = end, end = iterator.next()) {
-            String sentence = text.substring(start, end).trim();
-            sentence = maskEmail(sentence);
-            sentence = maskIBAN(sentence);
-            sentence = maskLocalAccount(sentence);
-            sentence = maskNationalId(sentence);
-            sentence = maskSwiftCode(sentence);
-            sentence = maskPhoneNumber(sentence);
-            sentence = maskAddress(sentence);
-            maskedText.append(sentence);
-        }
-        return maskedText.toString();
-    }
+    // ==================================================================================================
 
 
-    // ===============================================================================================
 
 }
