@@ -46,7 +46,7 @@ public class AddressRegex {
      *
      *
      * Then ends with comma and space optional and Egypt
-     * ,\s*Egypt$
+     * ,\s*Egypt
      *
      * 
      */
