@@ -5,12 +5,12 @@ import java.util.regex.Matcher;
 
 public class Problems_2_5_8_11_regex {
 
-    private static final String PROBLEM_2_REGEX = "^b*(a(b|bbb))*b*$"; // Add regex here
-    private static final String PROBLEM_5_REGEX = "^[a-zA-Z_][a-zA-Z0-9_]*$"; // Add regex here
-    private static final String PROBLEM_8_REGEX = "\\b\\w{5}(\\w{5})*\\b"; // Add regex here
-    private static final String PROBLEM_11_REGEX = "^(\\S+\\s+){6}\\S+$"; // Add regex here
+    private static final String PROBLEM_2_REGEX = "^[bB]*([aA]([bB]|[bB]{3}))*$";
+    private static final String PROBLEM_5_REGEX = "^[a-zA-Z_][a-zA-Z0-9_]*$";
+    private static final String PROBLEM_8_REGEX = "\\b\\w{5}(\\w{5})*\\b";
+    private static final String PROBLEM_11_REGEX = "^(\\S+\\s+){6}\\S+$";
 
-    private static final Pattern PROBLEM_2_PATTERN = Pattern.compile(PROBLEM_2_REGEX, Pattern.CASE_INSENSITIVE);
+    private static final Pattern PROBLEM_2_PATTERN = Pattern.compile(PROBLEM_2_REGEX);
     private static final Pattern PROBLEM_5_PATTERN = Pattern.compile(PROBLEM_5_REGEX);
     private static final Pattern PROBLEM_8_PATTERN = Pattern.compile(PROBLEM_8_REGEX);
     private static final Pattern PROBLEM_11_PATTERN = Pattern.compile(PROBLEM_11_REGEX);
@@ -36,9 +36,9 @@ public class Problems_2_5_8_11_regex {
         }
 
         if (matchCount == 0) {
-            result += "No word matches\n";
+            result += "No word matches" + "\n---------------------------------------------";
         } else {
-            result += "Number of matched words: " + matchCount + "\n" + matches;
+            result += "Number of matched words: " + matchCount + "\n" + matches + "---------------------------------------------";
         }
 
         return result;

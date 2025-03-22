@@ -12,6 +12,7 @@ public class EgyptianPhoneNumberRegex {
      *
      * ================== Explain the Egyptian phone number Regex ============================
      *
+     * `(?<!\d)` to ensure the phone number are NOT preceded by another digit
      *
      * ^(0|\+20|\(\+20\))
      * it can start with 0 or +20 or (+20)
@@ -22,10 +23,12 @@ public class EgyptianPhoneNumberRegex {
      * and ends with exactly 8 numbers
      * [0-9]{8}$
      *
+     * `(?!\d)` to ensure the phone number are NOT followed by another digit.
      *
      */
     private static final String EGYPTIAN_PHONE_REGEX =
-            "(0|\\+20|\\(\\+20\\))(10|11|12|15)[0-9]{8}";
+            "(?<!\\d)" + "(0|\\+20|\\(\\+20\\))(10|11|12|15)[0-9]{8}" +
+                    "(?!\\d)";
 
 
 
