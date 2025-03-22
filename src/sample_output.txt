@@ -11,7 +11,7 @@ invalid
 invalid
 x
 3
-invalid
+valid
 invalid
 invalid
 x
@@ -28,9 +28,11 @@ invalid
 invalid
 x
 6
+valid
+valid
 invalid
 invalid
-invalid
+valid
 x
 7
 invalid
@@ -41,9 +43,9 @@ invalid
 invalid
 x
 9
-invalid
-invalid
-invalid
+Timestamp: 2023-10-15 14:30:45, Level: INFO, Message: Application started
+Timestamp: 2023-10-15 14:31:10, Level: ERROR, Message: Failed to connect to database
+Timestamp: 2023-10-15 14:32:00, Level: INFO, Message: User logged in
 x
 10
 invalid
@@ -56,6 +58,6 @@ invalid
 invalid
 x
 12
-invalid
+valid
 invalid
 x
